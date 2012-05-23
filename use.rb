@@ -2,6 +2,7 @@ require 'rubygems'
 require 'oauth'
 require 'facebook_oauth'
 require 'yaml'
+require 'pp'
 
 appconf = YAML.load_file('conf/application.yaml')
 
@@ -12,4 +13,4 @@ client = FacebookOAuth::Client.new(
   :token => appconf['token']
 )
 
-print client.me.info
+pp client.me.info

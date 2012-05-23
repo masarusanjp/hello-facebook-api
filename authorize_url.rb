@@ -3,16 +3,12 @@ require 'oauth'
 require 'facebook_oauth'
 require 'yaml'
 
-
-
-appconf = YAML.load('conf/application.yaml')
-callback = "http:///redirect.url"
+appconf = YAML.load_file('conf/application.yaml')
 
 client = FacebookOAuth::Client.new(
   :application_id => appconf['appid'],
   :application_secret => appconf['app_secret'],
-  :callback => callback
+  :callback => appconf['callback']
 );
 
-
-print client.authorize_url(:scope => 'offline_access, publish_stream, user_status, read_stream');
+print client.authorize_url(:scope => 'read_mailbox, create_event, user_groups, user_events')
